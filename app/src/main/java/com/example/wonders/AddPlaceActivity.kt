@@ -4,8 +4,10 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.ContactsContract.Data
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -36,17 +38,18 @@ class AddPlaceActivity : AppCompatActivity() {
 
         db = Firebase.firestore
 
+
         val saveButton = findViewById<Button>(R.id.saveButton)
         saveButton.setOnClickListener {
             savePlace()
         }
+
 
         val backButton = findViewById<Button>(R.id.goBackButton)
         backButton.setOnClickListener {
             val intent = Intent(this, ListActivity::class.java)
             startActivity(intent)
         }
-
 
     }
 

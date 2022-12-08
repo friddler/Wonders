@@ -1,17 +1,33 @@
 package com.example.wonders
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import io.grpc.Context
+import com.google.firebase.firestore.FirebaseFirestore
 
-class DestinationRecycleAdapter (private val destinationList : ArrayList<Destination>) : RecyclerView.Adapter<DestinationRecycleAdapter.ViewHolder>() {
 
+class DestinationRecycleAdapter(val context: Context, private val destinationList: MutableList<Destination>) : RecyclerView.Adapter<DestinationRecycleAdapter.ViewHolder>() {
+
+    val db = FirebaseFirestore.getInstance()
+    val collectionRef = db.collection("destinations")
+
+    val listener = collectionRef.addSnapshotListener{ snapshot, exception ->
+        if(exception != null){
+            return@addSnapshotListener
+        }
+        destinationList.clear()
+        for (document in snapshot!!) {
+            val destination = document.toObject<Destination>(Destination::class.java)
+            destinationList.add(destination)
+        }
+        notifyDataSetChanged()
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.destination_list,parent,false)
+        val itemView = LayoutInflater.from(context).inflate(R.layout.destination_list,parent,false)
 
         return ViewHolder(itemView)
     }
@@ -19,21 +35,29 @@ class DestinationRecycleAdapter (private val destinationList : ArrayList<Destina
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val destination = destinationList[position]
 
-        holder.country.text = destination.country
-        holder.place.text = destination.place
-        holder.info.text = destination.info
+        //holder.picture.setImageDrawable(holder.picture.context.getDrawable(destination.picture))
+        holder.countryView.text = destination.country
+        holder.placeView.text = destination.place
+        holder.infoView.text = destination.info
     }
 
     override fun getItemCount(): Int {
         return destinationList.size
     }
 
-    public class ViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
+    override fun onViewRecycled(holder: ViewHolder) {
+        super.onViewRecycled(holder)
+        listener.remove()
+    }
 
-        val country : TextView = itemView.findViewById(R.id.countryTextView)
-        val place : TextView = itemView.findViewById(R.id.placeTextView)
-        val info : TextView = itemView.findViewById(R.id.infoTextView)
+    inner class ViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
+
+        //val picture : ImageView = itemView.findViewById(R.id.imageView)
+        val countryView : TextView = itemView.findViewById(R.id.countryTextView)
+        val placeView : TextView = itemView.findViewById(R.id.placeTextView)
+        val infoView : TextView = itemView.findViewById(R.id.infoTextView)
 
 
     }
+
 }
