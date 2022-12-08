@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Wonders</string>
+
+    <string name="info_a">One of the great wonders of the world is the Great Wall of China and it is thought to be about 5,5 miles long. The work began in the 7th century BCE and continued for two millennia. The wall was built to prevent invasions and raids, but the wall largely failed to provide actual security. The wall begins in the east at Shanhaiguan in Hebei province and ends at Jiayuguan in Gansu province to the west.</string>
+    <string name="info_b">The ancient Mayan city of Chichén Itzá is located on Mexico\'s Yucatan Peninsula. If we go back to the 9th and 10th centuries, we can see that the city would be a vibrant city with a diverse Mayan population. Archaeologists are still unsure when exactly construction began, but historical records suggest the city was in an early stage of development around AD 600–750. c.</string>
+    <string name="info_c">jnfgefnakfnaöwfjndawdawdawd</string>
+    <string name="info_d">jnfgefnakfnaöwfjndawdawdawd</string>
+    <string name="info_e">jnfgefnakfnaöwfjndawdawdawd</string>
+    <string name="info_f">jnfgefnakfnaöwfjndawdawdawd</string>
+    <string name="info_g">jnfgefnakfnaöwfjndawdawdawd</string>
+
+    <!-- Headings -->
+    <string name="head1">The Great Wall of China</string>
+    <string name="head2">Chichén Itzá</string>
+    <string name="head3">Petra</string>
+    <string name="head4">Machu Picchu</string>
+    <string name="head5">Christ the Redeemer</string>
+    <string name="head6">Colosseum</string>
+    <string name="head7">Taj Mahal</string>
+
+
+</resources>
