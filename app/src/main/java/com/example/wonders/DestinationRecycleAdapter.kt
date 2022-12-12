@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 
 
 class DestinationRecycleAdapter(val context: Context, val destinationArray: List<Destination>) : RecyclerView.Adapter<DestinationRecycleAdapter.ViewHolder>() {
@@ -22,10 +23,13 @@ class DestinationRecycleAdapter(val context: Context, val destinationArray: List
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val destination = destinationArray[position]
 
-        //holder.picture.setImageDrawable(holder.picture.context.getDrawable(Destination.picture))
-        holder.countryView.text = destination.country
-        holder.placeView.text = destination.place
-        holder.infoView.text = destination.info
+            Glide.with(context)
+                .load(destination.pictureUrl)
+                .into(holder.picture)
+
+        holder.country.text = destination.country
+        holder.place.text = destination.place
+        holder.info.text = destination.info
     }
 
     override fun getItemCount(): Int {
@@ -34,10 +38,10 @@ class DestinationRecycleAdapter(val context: Context, val destinationArray: List
 
     inner class ViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
 
-        //val picture : ImageView = itemView.findViewById(R.id.imageOfPlace)
-        val countryView : TextView = itemView.findViewById(R.id.countryTextView)
-        val placeView : TextView = itemView.findViewById(R.id.placeTextView)
-        val infoView : TextView = itemView.findViewById(R.id.infoTextView)
+        val picture : ImageView = itemView.findViewById(R.id.imageOfPlace)
+        val country : TextView = itemView.findViewById(R.id.countryTextView)
+        val place : TextView = itemView.findViewById(R.id.placeTextView)
+        val info : TextView = itemView.findViewById(R.id.infoTextView)
 
 
     }

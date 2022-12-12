@@ -4,10 +4,8 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.ContactsContract.Data
 import android.widget.Button
 import android.widget.EditText
-import android.widget.ImageView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -20,6 +18,7 @@ class AddPlaceActivity : AppCompatActivity() {
 
     lateinit var auth : FirebaseAuth
 
+    lateinit var urlEditText: EditText
     lateinit var countryText : EditText
     lateinit var whereText : EditText
     lateinit var infoText: EditText
@@ -30,7 +29,7 @@ class AddPlaceActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_place)
 
-        countryText = findViewById(R.id.countryEditText)
+        countryText = findViewById(R.id.urlEditText)
         whereText = findViewById(R.id.whereEditText)
         infoText = findViewById(R.id.descriptionEditText)
 
@@ -55,7 +54,10 @@ class AddPlaceActivity : AppCompatActivity() {
 
     fun savePlace(){
 
-        val place = Destination(country = countryText.text.toString(), place = whereText.text.toString(), info = infoText.text.toString())
+        val place = Destination(pictureUrl = urlEditText.text.toString(), country = countryText.text.toString(),
+                                place = whereText.text.toString(), info = infoText.text.toString())
+
+        urlEditText.setText("")
         countryText.setText("")
         whereText.setText("")
         infoText.setText("")
@@ -65,7 +67,7 @@ class AddPlaceActivity : AppCompatActivity() {
             return
         }
 
-        db.collection("destinations").document(user.uid).collection("destinations").add(place)
+        db.collection("users").document(user.uid).collection("Destination").add(place)
 
     }
 }

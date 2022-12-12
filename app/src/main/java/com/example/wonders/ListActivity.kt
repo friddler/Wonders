@@ -39,7 +39,7 @@ class ListActivity : AppCompatActivity() {
 
         val db = Firebase.firestore
 
-        val collectionRef = db.collectionGroup("destinations")
+        val collectionRef = db.collectionGroup("Destination")
         collectionRef.addSnapshotListener { snapshot, exception ->
             if(exception != null){
                 return@addSnapshotListener
