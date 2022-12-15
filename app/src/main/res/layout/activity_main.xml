@@ -12,60 +12,91 @@
         android:layout_width="303dp"
         android:layout_height="62dp"
         android:layout_marginStart="53dp"
-        android:layout_marginTop="304dp"
         android:layout_marginEnd="53dp"
-        android:paddingStart="10dp"
+        android:layout_marginBottom="16dp"
         android:background="@drawable/custom_button1"
         android:ems="10"
         android:hint="Email:"
         android:inputType="textPersonName"
         android:minHeight="48dp"
+        android:paddingStart="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/passwordEditText"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/passwordEditText"
         android:layout_width="299dp"
         android:layout_height="60dp"
         android:layout_marginStart="53dp"
-        android:layout_marginTop="32dp"
         android:layout_marginEnd="53dp"
+        android:layout_marginBottom="184dp"
         android:background="@drawable/custom_button1"
         android:ems="10"
         android:hint="Password:"
         android:inputType="textPassword"
         android:paddingStart="10dp"
         app:backgroundTint="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.449"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mailEditText" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/signUpButton"
-        android:layout_width="150dp"
+        android:layout_width="160dp"
         android:layout_height="60dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginBottom="92dp"
-        android:text="SIGN UP"
+        android:layout_marginStart="35dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="60dp"
         android:background="@drawable/custom_button1"
+        android:text="SIGN UP"
+        android:textSize="16sp"
         app:backgroundTint="@null"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/signInButton"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/signInButton"
-        android:layout_width="150dp"
+        android:layout_width="160dp"
         android:layout_height="60dp"
-        android:layout_marginStart="220dp"
-        android:layout_marginBottom="92dp"
-        android:text="SIGN IN"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="35dp"
+        android:layout_marginBottom="60dp"
         android:background="@drawable/custom_button1"
+        android:text="SIGN IN"
+        android:textSize="16sp"
         app:backgroundTint="@null"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/signUpButton" />
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="296dp"
+        android:layout_height="315dp"
+        android:layout_marginStart="57dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="58dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewMain"
+        app:srcCompat="@drawable/globe" />
+
+    <TextView
+        android:id="@+id/textViewMain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="31dp"
+        android:layout_marginTop="52dp"
+        android:layout_marginEnd="31dp"
+        android:fontFamily="@font/marko_one"
+        android:text="WONDERS OF THE WORLD"
+        android:textColor="@color/paolo"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

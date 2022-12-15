@@ -1,6 +1,7 @@
 package com.example.wonders
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,9 +9,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.google.firebase.firestore.DocumentId
 
 
-class DestinationRecycleAdapter(val context: Context, val destinationArray: List<Destination>) : RecyclerView.Adapter<DestinationRecycleAdapter.ViewHolder>() {
+class DestinationRecycleAdapter(private val context: Context, private val destinationArray: List<Destination>) : RecyclerView.Adapter<DestinationRecycleAdapter.ViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -23,13 +25,22 @@ class DestinationRecycleAdapter(val context: Context, val destinationArray: List
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val destination = destinationArray[position]
 
-            Glide.with(context)
-                .load(destination.pictureUrl)
-                .into(holder.picture)
-
         holder.country.text = destination.country
         holder.place.text = destination.place
-        holder.info.text = destination.info
+
+        Glide.with(context)
+            .load(destination.pictureUrl)
+            .into(holder.picture)
+
+        holder.apply {
+            picture.setOnClickListener {
+                val intent = Intent(context, ShowInfoActivity::class.java)
+                intent.putExtra("destination_info", destination.info)
+                context.startActivity(intent)
+
+            }
+        }
+
     }
 
     override fun getItemCount(): Int {
@@ -41,7 +52,7 @@ class DestinationRecycleAdapter(val context: Context, val destinationArray: List
         val picture : ImageView = itemView.findViewById(R.id.imageOfPlace)
         val country : TextView = itemView.findViewById(R.id.countryTextView)
         val place : TextView = itemView.findViewById(R.id.placeTextView)
-        val info : TextView = itemView.findViewById(R.id.infoTextView)
+
 
 
     }
