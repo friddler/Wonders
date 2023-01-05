@@ -7,8 +7,11 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
+import com.google.firebase.auth.FirebaseAuthInvalidUserException
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
@@ -20,7 +23,6 @@ class MainActivity : AppCompatActivity() {
     lateinit var password : EditText
 
 
-    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -72,6 +74,7 @@ class MainActivity : AppCompatActivity() {
                     Log.d("!!!", "user logged in")
                     goToRecycleView()
                 } else {
+                    Toast.makeText(this, "User not found. Have you created an account?", Toast.LENGTH_SHORT).show()
                     Log.d("!!!", "user not found")
                 }
             }
@@ -85,6 +88,7 @@ class MainActivity : AppCompatActivity() {
         val password = password.text.toString()
 
         if(email.isEmpty() || password.isEmpty()){
+            Toast.makeText(this, "Email and password cannot be empty.",Toast.LENGTH_SHORT).show()
             return
         }
 

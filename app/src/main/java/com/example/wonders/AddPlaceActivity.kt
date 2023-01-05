@@ -2,12 +2,15 @@ package com.example.wonders
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.media.Image
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -36,21 +39,61 @@ class AddPlaceActivity : AppCompatActivity() {
         infoText = findViewById(R.id.infoEditText)
 
 
+
         auth = Firebase.auth
 
         db = Firebase.firestore
+
+        navBar()
+/*
+        val globeImage = findViewById<ImageView>(R.id.pinPlaceImage)
+        globeImage.setOnClickListener {
+            val intent = Intent(this, MapsActivity::class.java)
+            startActivity(intent)
+
+        }
+
+ */
 
 
         val saveButton = findViewById<Button>(R.id.saveButton)
         saveButton.setOnClickListener {
             savePlace()
+
         }
 
-        val backButton = findViewById<Button>(R.id.goBackButton)
-        backButton.setOnClickListener {
-            val intent = Intent(this, ListActivity::class.java)
-            startActivity(intent)
+
+
+
+    }
+
+    private fun navBar(){
+
+        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
+
+        bottomNavigationView.setOnItemSelectedListener { item ->
+            when(item.itemId){
+                R.id.action_home -> {
+                    val intent = Intent(this,ListActivity::class.java)
+                    startActivity(intent)
+                    true
+                }
+                R.id.action_add -> {
+                    val intent = Intent(this, AddPlaceActivity::class.java)
+                    startActivity(intent)
+                    true
+                }
+                R.id.action_logout -> {
+                    auth.signOut()
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                    true
+                }
+                else -> true
+            }
+
         }
+
 
     }
 
@@ -81,13 +124,5 @@ class AddPlaceActivity : AppCompatActivity() {
 
 
     }
-/*
-    if(mapImage.isClickable){
-        val intent = Intent(this, MapsActivity::class.java)
-        intent.putExtra("selectedLocation", selectedLocation)
-        startActivity(intent)
-    }
-
- */
 
 }

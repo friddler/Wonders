@@ -2,6 +2,7 @@ package com.example.wonders
 
 import android.content.Context
 import android.content.Intent
+import android.media.Image
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -36,11 +37,19 @@ class DestinationRecycleAdapter(private val context: Context, private val destin
             picture.setOnClickListener {
                 val intent = Intent(context, ShowInfoActivity::class.java)
                 intent.putExtra("destination_info", destination.info)
+                intent.putExtra("destination_country", destination.place)
+                intent.putExtra("destination_picture",destination.pictureUrl)
                 context.startActivity(intent)
 
             }
         }
+        holder.apply {
+            mapImage.setOnClickListener {
+                val intent = Intent(context, MapsActivity::class.java)
+                context.startActivity(intent)
 
+            }
+        }
     }
 
     override fun getItemCount(): Int {
@@ -52,6 +61,7 @@ class DestinationRecycleAdapter(private val context: Context, private val destin
         val picture : ImageView = itemView.findViewById(R.id.imageOfPlace)
         val country : TextView = itemView.findViewById(R.id.countryTextView)
         val place : TextView = itemView.findViewById(R.id.placeTextView)
+        val mapImage : ImageView = itemView.findViewById(R.id.mapImageView)
 
 
 

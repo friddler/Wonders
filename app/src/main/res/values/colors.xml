@@ -8,6 +8,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
+         <!-- green theme -->
 
     <color name="cambridge">#A1BEAF</color>
     <color name="shinysham">#66A07D</color>
@@ -15,6 +16,29 @@
     <color name="cambridgeblue">#95BDA4</color>
     <color name="viridian">#3A896F</color>
     <color name="emerald">#389275</color>
+
+    <!-- Light theme -->
+
+    <color name="beaver">#A48D7F</color>
+    <color name="darkerbeaver">#A18774</color>
+    <color name="grayx">#BEBBB9</color>
+    <color name="blackshadows">#B3A4A3</color>
+    <color name="silverpink">#AF9C97</color>
+
+
+    <!-- train theme -->
+
+    <color name="palegreen">#D5E0B9</color>
+    <color name="lightblue">#B9DFF8</color>
+    <color name="darkblue">#72A2EE</color>
+    <color name="lightgreen">#B6CCD0</color>
+    <color name="frenchblue">#8ABBF8</color>
+    <color name="cadetgrey">#A2B0BA</color>
+    <color name="nicegreen">#AAC69D</color>
+
+
+
+
 
 
 </resources>

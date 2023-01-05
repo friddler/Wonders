@@ -1,20 +1,22 @@
 package com.example.wonders
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-
-import com.google.android.gms.maps.CameraUpdateFactory
+import androidx.appcompat.app.AppCompatActivity
+import com.example.wonders.databinding.ActivityMapsBinding
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
-import com.example.wonders.databinding.ActivityMapsBinding
+import com.google.firebase.firestore.GeoPoint
+
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var mMap: GoogleMap
     private lateinit var binding: ActivityMapsBinding
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,27 +24,33 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         binding = ActivityMapsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+
+
         val mapFragment = supportFragmentManager
-            .findFragmentById(R.id.mapView) as SupportMapFragment
+            .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
+
     }
 
-    /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
-     */
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
 
-       createMarkers()
+        createMarkers()
+        /*
+
+        mMap.setOnMapLongClickListener { latlng ->
+           val geoPoint = GeoPoint(latlng.latitude, latlng.longitude)
+            saveLocation(geoPoint)
+            mMap.addMarker(MarkerOptions().position(latlng))
+
+        }
+
+         */
     }
-    fun createMarkers(){
+
+
+
+   private fun createMarkers(){
 
         val colosseum = LatLng(41.8902,12.4922)
 
@@ -68,7 +76,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         )
         var marker3 = mMap.addMarker(
 
-
             MarkerOptions()
                 .position(tajMahal)
                 .title("India - Agra")
@@ -76,4 +83,5 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         )
 
     }
+
 }
