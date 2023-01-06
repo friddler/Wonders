@@ -33,6 +33,13 @@ class ListActivity : AppCompatActivity() {
 
         navBar()
         getData()
+        swipeToDelete()
+
+
+
+    }
+
+    private fun swipeToDelete(){
 
         val swipeToDeleteCallback = object : swipeToDeleteCallback() {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
@@ -50,7 +57,6 @@ class ListActivity : AppCompatActivity() {
 
         val itemTouchHelper = ItemTouchHelper(swipeToDeleteCallback)
         itemTouchHelper.attachToRecyclerView(recyclerView)
-
 
 
     }
