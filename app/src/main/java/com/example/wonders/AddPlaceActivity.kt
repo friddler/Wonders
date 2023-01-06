@@ -59,10 +59,11 @@ class AddPlaceActivity : AppCompatActivity() {
 
         val saveButton = findViewById<Button>(R.id.saveButton)
         saveButton.setOnClickListener {
-
             val latitude = intent.getDoubleExtra("latitude", 0.0)
             val longitude = intent.getDoubleExtra("longitude", 0.0)
-            savePlace(latitude,longitude)
+            savePlace(latitude, longitude)
+            setResult(Activity.RESULT_OK)
+            finish()
 
         }
 
@@ -101,6 +102,19 @@ class AddPlaceActivity : AppCompatActivity() {
 
 
     }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == REQUEST_CODE_SELECT_LOCATION && resultCode == Activity.RESULT_OK && data != null) {
+            val latitude = data.getDoubleExtra("latitude", 0.0)
+            val longitude = data.getDoubleExtra("longitude", 0.0)
+
+            // Save the latitude and longitude to the database here
+            savePlace(latitude,longitude)
+        }
+    }
+
 
 
     private fun navBar(){
