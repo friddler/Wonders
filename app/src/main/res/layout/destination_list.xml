@@ -44,14 +44,4 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imageOfPlace" />
 
-    <ImageView
-        android:id="@+id/mapImageView"
-        android:layout_width="28dp"
-        android:layout_height="29dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="25dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/map" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,7 +1,6 @@
 package com.example.wonders
 
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -16,8 +15,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.GeoPoint
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-
-private const val REQUEST_CODE_SELECT_LOCATION = 1
+import com.google.android.gms.maps.model.LatLng
 
 
 class AddPlaceActivity : AppCompatActivity() {
@@ -35,7 +33,6 @@ class AddPlaceActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_place)
 
-
         countryText = findViewById(R.id.countryEditText)
         whereText = findViewById(R.id.whereEditText)
         urlText = findViewById(R.id.urlEditText)
@@ -44,41 +41,24 @@ class AddPlaceActivity : AppCompatActivity() {
         auth = Firebase.auth
         db = Firebase.firestore
 
-
-
         navBar()
-
-        val globeImage = findViewById<ImageView>(R.id.pinPlaceImage)
-        globeImage.setOnClickListener {
-            val intent = Intent(this, MapsActivity::class.java)
-            startActivityForResult(intent, REQUEST_CODE_SELECT_LOCATION)
-
-        }
-
 
 
         val saveButton = findViewById<Button>(R.id.saveButton)
         saveButton.setOnClickListener {
-            val latitude = intent.getDoubleExtra("latitude", 0.0)
-            val longitude = intent.getDoubleExtra("longitude", 0.0)
-            savePlace(latitude, longitude)
-            setResult(Activity.RESULT_OK)
+            savePlace()
             finish()
 
         }
-
-
     }
 
-    private fun savePlace(latitude : Double, longitude : Double){
-
-        val geoPoint = GeoPoint(latitude,longitude)
+    private fun savePlace(){
 
         val place = Destination(country = countryText.text.toString(),
                                 pictureUrl = urlText.text.toString(),
                                 place = whereText.text.toString(),
                                 info = infoText.text.toString(),
-                                geoPoint = geoPoint
+
 
         )
 
@@ -99,23 +79,7 @@ class AddPlaceActivity : AppCompatActivity() {
                 Log.d("!!!", "data doesn't save $it")
             }
 
-
-
     }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        if (requestCode == REQUEST_CODE_SELECT_LOCATION && resultCode == Activity.RESULT_OK && data != null) {
-            val latitude = data.getDoubleExtra("latitude", 0.0)
-            val longitude = data.getDoubleExtra("longitude", 0.0)
-
-            // Save the latitude and longitude to the database here
-            savePlace(latitude,longitude)
-        }
-    }
-
-
 
     private fun navBar(){
 

@@ -29,14 +29,6 @@
             android:value="AIzaSyBFA0SAX4rYt54E90t9Pm18TXs_HPT2RrU" />
 
         <activity
-            android:name=".MapsActivity"
-            android:exported="false"
-            android:label="@string/title_activity_maps">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
             android:name=".AddPlaceActivity"
             android:exported="false">
             <meta-data

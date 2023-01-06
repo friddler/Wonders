@@ -43,13 +43,7 @@ class DestinationRecycleAdapter(private val context: Context, private val destin
 
             }
         }
-        holder.apply {
-            mapImage.setOnClickListener {
-                val intent = Intent(context, MapsActivity::class.java)
-                context.startActivity(intent)
 
-            }
-        }
     }
 
     override fun getItemCount(): Int {
@@ -61,7 +55,6 @@ class DestinationRecycleAdapter(private val context: Context, private val destin
         val picture : ImageView = itemView.findViewById(R.id.imageOfPlace)
         val country : TextView = itemView.findViewById(R.id.countryTextView)
         val place : TextView = itemView.findViewById(R.id.placeTextView)
-        val mapImage : ImageView = itemView.findViewById(R.id.mapImageView)
 
 
 

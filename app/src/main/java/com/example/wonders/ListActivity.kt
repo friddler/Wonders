@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FieldPath
+import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
@@ -34,8 +36,6 @@ class ListActivity : AppCompatActivity() {
         navBar()
         getData()
         swipeToDelete()
-
-
 
     }
 
@@ -69,7 +69,7 @@ class ListActivity : AppCompatActivity() {
             .delete()
             .addOnSuccessListener {
                 Log.d(ContentValues.TAG, "Deleted")
-                // remove the item from the destinationArray list and update the adapter
+
                 val position = destinationArray.indexOfFirst { it.documentId == id }
                 if (position >= 0) {
                     destinationArray.removeAt(position)
@@ -83,6 +83,7 @@ class ListActivity : AppCompatActivity() {
 
 
     private fun getData(){
+
         val db = Firebase.firestore
 
         val collectionRef = db.collectionGroup("wonders")
